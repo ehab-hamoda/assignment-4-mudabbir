@@ -1,0 +1,1743 @@
+/* ==========================================================================
+    FONTS
+   ========================================================================== */
+@font-face {
+    font-family: "IBM Plex Sans Arabic";
+    src: url("../fonts/IBMPlexSansArabic-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "IBM Plex Sans Arabic";
+    src: url("../fonts/IBMPlexSansArabic-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "IBM Plex Sans Arabic";
+    src: url("../fonts/IBMPlexSansArabic-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "IBM Plex Sans Arabic";
+    src: url("../fonts/IBMPlexSansArabic-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-display: swap;
+}
+
+
+/* ==========================================================================
+    DESIGN TOKENS
+   ========================================================================== */
+:root {
+    /* Surfaces */
+    --bg: #f9fafb;
+    --card: #ffffff;
+    --surface-alt: #f8fafc;
+    --border: #e2e8f0;
+
+    /* Text */
+    --text: #101828;
+    --muted: #4a5565;
+    --subtle: #6a7282;
+
+    /* Brand & status colors */
+    --primary: #3b5bdb;
+    --primary-pale: #e8edfb;
+    --blue: #2563eb;
+    --green: #16a34a;
+    --red: #dc2626;
+    --purple: #7c3aed;
+
+    --pale-blue: #dbeafe;
+    --pale-green: #dcfce7;
+    --pale-purple: #ede9fe;
+    --pale-red: #fee2e2;
+
+    /* Shape & elevation */
+    --radius-card: 1.25rem;
+    --shadow-card: 0 2px 10px rgba(15, 23, 42, 0.05);
+
+    /* Fonts (the monospace stack is resolved from the user's installed fonts) */
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+
+/* ==========================================================================
+    RESET & BASE
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    display: block;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+
+/* ==========================================================================
+    APP LAYOUT
+   Mobile first: sidebar on top, content below.
+   ========================================================================== */
+.app {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+        "sidebar"
+        "main";
+    min-height: 100vh;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.main {
+    grid-area: main;
+    min-width: 0;
+}
+
+
+/* ==========================================================================
+    ICONS & TILES
+   ========================================================================== */
+
+/* ---------- PNG icons ---------- */
+.ico {
+    display: block;
+    width: 1.125rem;
+    height: 1.125rem;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.ico-xs {
+    width: 0.75rem;
+    height: 0.75rem;
+}
+
+.ico-sm {
+    width: 0.875rem;
+    height: 0.875rem;
+}
+
+.ico-btn {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.ico-lg {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+/* ---------- Icon tiles: shared base ---------- */
+.quick-icon,
+.activity-icon,
+.tx-icon,
+.bill-icon,
+.budget-icon,
+.summary-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* ---------- Icon tiles: colors ---------- */
+.tile-blue {
+    background-color: var(--pale-blue);
+}
+
+.tile-green {
+    background-color: var(--pale-green);
+}
+
+.tile-purple {
+    background-color: var(--pale-purple);
+}
+
+.tile-red {
+    background-color: var(--pale-red);
+}
+
+.tile-yellow {
+    background-color: #fef3c7;
+}
+
+.tile-pink {
+    background-color: #fce7f3;
+}
+
+.tile-orange {
+    background-color: #ffedd4;
+}
+
+.tile-indigo {
+    background-color: #e0e7ff;
+}
+
+.tile-cyan {
+    background-color: #cefafe;
+}
+
+
+/* ==========================================================================
+   06. SIDEBAR
+   ========================================================================== */
+.sidebar {
+    background-color: var(--card);
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+/* ---------- Brand ---------- */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 1.5rem;
+}
+
+.brand-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 3.625rem;
+    height: 3.625rem;
+    background-color: var(--primary);
+    border-radius: 1rem;
+}
+
+.brand-text h1,
+.brand-text h2 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.125rem;
+}
+
+.brand-text p {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+/* ---------- Navigation ---------- */
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    color: var(--muted);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: var(--primary-pale);
+    color: var(--primary);
+}
+
+/* ---------- Quick actions ---------- */
+.quick {
+    margin-top: 1.75rem;
+}
+
+.quick-title {
+    font-size: 0.85rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+}
+
+.quick-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.quick-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 4rem;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #111827;
+    transition: background-color 0.2s;
+}
+
+.quick-link:hover {
+    background-color: var(--bg);
+}
+
+.quick-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.625rem;
+}
+
+
+/* ==========================================================================
+   07. MAIN CONTAINER
+   ========================================================================== */
+.main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+
+/* ==========================================================================
+   08. TOPBAR
+   ========================================================================== */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.375rem 1.75rem;
+    background-color: #fafcfe;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+}
+
+/* ---------- Brand + connection status ---------- */
+.topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+}
+
+.topbar-brand .brand-text h2 {
+    font-size: 2rem;
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
+}
+
+.topbar-brand .brand-text p {
+    font-size: 0.85rem;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-right: 0.75rem;
+    padding: 0.3125rem 0.875rem;
+    background-color: #f0fdf4;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--green);
+}
+
+.status-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #3bd679;
+    border-radius: 50%;
+}
+
+/* ---------- Actions: search, notifications, user ---------- */
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.icon-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    background-color: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 0.875rem;
+    transition: background-color 0.2s;
+}
+
+.icon-btn:hover {
+    background-color: #f3f4f6;
+}
+
+.notif-badge {
+    position: absolute;
+    top: -0.375rem;
+    right: -0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.125rem;
+    height: 1.125rem;
+    background-color: var(--red);
+    border-radius: 50%;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.5rem 0.875rem;
+    background-color: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+}
+
+.user:hover {
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.user img {
+    width: 2.875rem;
+    height: 2.875rem;
+    object-fit: cover;
+    border-radius: 0.75rem;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
+.user-info strong {
+    display: block;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.user-info small {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    color: var(--subtle);
+}
+
+
+/* ==========================================================================
+   09. CARDS
+   ========================================================================== */
+.card {
+    min-width: 0;
+    padding: 1.5rem;
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+}
+
+.card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.625rem;
+    margin-bottom: 1rem;
+}
+
+.card-head h2 {
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.card-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.card-link:hover {
+    opacity: 1;
+}
+
+.card-link i {
+    font-size: 0.65rem;
+}
+
+
+/* ==========================================================================
+   10. STATS
+   ========================================================================== */
+.stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: right;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 0.375rem;
+}
+
+.stat-value {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.375rem;
+}
+
+.stat-trend {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+}
+
+.trend-up {
+    color: #00a63e;
+}
+
+.trend-down {
+    color: #e7000b;
+}
+
+
+/* ==========================================================================
+   11. DASHBOARD GRID
+   ========================================================================== */
+.dashboard {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+        "activities"
+        "transactions"
+        "bills"
+        "budget"
+        "chart"
+        "summary"
+        "payments";
+    gap: 1rem;
+}
+
+.card-activities {
+    grid-area: activities;
+}
+
+.card-transactions {
+    grid-area: transactions;
+}
+
+.card-bills {
+    grid-area: bills;
+}
+
+.card-budget {
+    grid-area: budget;
+}
+
+.card-chart {
+    grid-area: chart;
+}
+
+.card-summary {
+    grid-area: summary;
+}
+
+.card-payments {
+    grid-area: payments;
+}
+
+/* ==========================================================================
+   12. RECENT ACTIVITIES
+   ========================================================================== */
+.activities-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.activity-item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    border-left: 4px solid transparent;
+    border-radius: 0.875rem;
+}
+
+.act-blue {
+    background-color: #f4f7fe;
+    border-left-color: var(--blue);
+}
+
+.act-green {
+    background-color: #f2fbf5;
+    border-left-color: var(--green);
+}
+
+.activity-icon {
+    width: 2.375rem;
+    height: 2.375rem;
+    border-radius: 50%;
+}
+
+.activity-info {
+    flex-grow: 1;
+    padding-left: 3.5rem;
+}
+
+.activity-info h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.125rem;
+}
+
+.activity-info p {
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 0.25rem;
+}
+
+.activity-info small {
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: var(--subtle);
+}
+
+.activity-badge {
+    position: absolute;
+    top: 0.875rem;
+    left: 0.875rem;
+    font-size: 0.72rem;
+    line-height: 1.5;
+    font-weight: 700;
+}
+
+.act-blue .activity-badge {
+    color: var(--blue);
+}
+
+.act-green .activity-badge {
+    color: var(--green);
+}
+
+.activities-more {
+    display: block;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+
+/* ==========================================================================
+   13. RECENT TRANSACTIONS
+   ========================================================================== */
+.table-wrap {
+    overflow-x: auto;
+}
+
+.tx-table {
+    width: 100%;
+    min-width: 37.5rem;
+    border-collapse: collapse;
+    text-align: right;
+}
+
+.tx-table th {
+    padding: 0.625rem 0.5rem;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.tx-table td {
+    padding: 1.125rem 0.5rem;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.tx-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tx-user {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.tx-user>img,
+.tx-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.tx-user strong {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--subtle);
+}
+
+.tx-user small {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--subtle);
+}
+
+.tx-date {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.tx-amount {
+    font-weight: 700;
+}
+
+.tx-amount.plus {
+    color: var(--green);
+}
+
+.tx-amount.minus {
+    color: var(--text);
+}
+
+/* ---------- Category badges ---------- */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.badge-green {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.badge-orange {
+    background-color: #ffedd4;
+    color: #9f2d00;
+}
+
+.badge-blue {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.badge-red {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.badge-purple {
+    background-color: #f3e8ff;
+    color: #6b21a8;
+}
+
+.badge-indigo {
+    background-color: #e0e7ff;
+    color: #3730a3;
+}
+
+.badge-cyan {
+    background-color: #cefafe;
+    color: #155e75;
+}
+
+/* ---------- Status pills ---------- */
+.status-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--pale-green);
+    border-radius: 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--green);
+}
+
+.status-pill.pending {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+/* ==========================================================================
+   14. MONTHLY BILLS
+   ========================================================================== */
+.bills-total {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.bills-total h3 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.bills-total p {
+    margin-bottom: 0.125rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.bills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.bill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.875rem 0.625rem;
+    background-color: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 0.875rem;
+    text-align: center;
+}
+
+.bill-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.625rem;
+}
+
+.bill-item h4 {
+    margin-bottom: 0.125rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.bill-item strong {
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.bill-item small {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.due-red {
+    color: #fb2c36;
+}
+
+.due-yellow {
+    color: #f97200;
+}
+
+.due-green {
+    color: #00c950;
+}
+
+.due-muted {
+    color: var(--muted);
+}
+
+
+/* ==========================================================================
+   15. BUDGET OVERVIEW
+   ========================================================================== */
+
+/* ---------- Overall summary ---------- */
+.budget-summary {
+    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    background-color: #f4f7fe;
+    border: 1px solid #dbeafe;
+    border-radius: 1rem;
+}
+
+.budget-summary-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.budget-summary-top small {
+    display: block;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    color: #155dfc;
+}
+
+.budget-summary-top h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    color: #1c398e;
+}
+
+.budget-rem {
+    text-align: left;
+}
+
+.budget-rem small {
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.budget-rem strong {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--green);
+}
+
+.budget-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.375rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+/* ---------- Progress bars ---------- */
+.progress-track {
+    width: 100%;
+    height: 0.5rem;
+    background-color: var(--border);
+    border-radius: 0.625rem;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 0.625rem;
+}
+
+.bar-primary {
+    background-color: var(--primary);
+}
+
+.bar-orange {
+    background-color: #f97316;
+}
+
+.bar-red {
+    background-color: var(--red);
+}
+
+.bar-pink {
+    background-color: #ec4899;
+}
+
+.bar-green {
+    background-color: var(--green);
+}
+
+/* ---------- Category list ---------- */
+.budget-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.budget-item {
+    padding: 1rem;
+    background-color: #f9fafb80;
+    border: 1px solid #e5e7ebcc;
+    border-radius: 0.75rem;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.budget-item:hover {
+    background-color: #f3f4f6cc;
+    border-color: #d1d5dbe6;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px #0000001a, 0 2px 4px -1px #0000000f;
+}
+
+.budget-item-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.625rem;
+}
+
+.budget-cat {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+.budget-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.625rem;
+}
+
+.budget-cat h4 {
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.budget-cat small {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    color: var(--subtle);
+}
+
+.budget-val {
+    text-align: left;
+}
+
+.budget-val strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.budget-val span {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    border-radius: 1.25rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+}
+
+.tag-green {
+    background-color: var(--pale-green);
+    color: #166534;
+}
+
+.tag-red {
+    background-color: var(--pale-red);
+    color: #991b1b;
+}
+
+.tag-yellow {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+
+/* ==========================================================================
+   16. INCOME VS EXPENSES CHART
+   ========================================================================== */
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.875rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.chart-legend span {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+.dot-green,
+.dot-red {
+    display: inline-block;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 0.1875rem;
+}
+
+.dot-green {
+    background-color: var(--green);
+}
+
+.dot-red {
+    background-color: var(--red);
+}
+
+.chart-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 9.375rem;
+    padding-top: 0.625rem;
+}
+
+.bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    height: 100%;
+}
+
+.bar-group small {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.25rem;
+    height: 100%;
+}
+
+.bar-income,
+.bar-expense {
+    width: 0.75rem;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.bar-income {
+    background-color: var(--green);
+}
+
+.bar-expense {
+    background-color: var(--red);
+}
+
+
+/* ==========================================================================
+   17. ACCOUNT SUMMARY
+   ========================================================================== */
+.summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.75rem 0.875rem;
+    background-color: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 0.875rem;
+}
+
+.summary-right {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+.summary-icon {
+    width: 2.375rem;
+    height: 2.375rem;
+    border-radius: 0.625rem;
+}
+
+.summary-right h4 {
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.summary-right small {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    color: var(--subtle);
+}
+
+.summary-val {
+    font-size: 0.92rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.summary-val.minus {
+    color: var(--red);
+}
+
+
+/* ==========================================================================
+   18. PAYMENT METHODS (3D flip cards)
+   ========================================================================== */
+.cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* ---------- Flip mechanics ---------- */
+.flip-card {
+    height: 14rem;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.4s;
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card:focus .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border-radius: 1.125rem;
+    color: #ffffff;
+    backface-visibility: hidden;
+}
+
+/* ---------- Card themes ---------- */
+.pay-visa {
+    background: linear-gradient(135deg, #2b32b2, #3730a3);
+}
+
+.pay-master {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+.pay-paypal {
+    background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+}
+
+/* ---------- Front: top row (chip + brand) ---------- */
+.pay-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.pay-chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 2rem;
+    background-color: rgba(255, 255, 255, 0.22);
+    border-radius: 0.5rem;
+}
+
+.pay-chip span {
+    width: 1.5rem;
+    height: 1rem;
+    background-color: rgba(255, 255, 255, 0.45);
+    border-radius: 0.25rem;
+}
+
+/* Brand logo with the "primary" tag floating over its top edge */
+.pay-brand {
+    position: relative;
+    display: block;
+}
+
+.pay-brand .pay-tag {
+    position: absolute;
+    top: -1.25rem;
+    left: 50%;
+    z-index: 2;
+    padding: 0.5rem 0.75rem;
+    background: linear-gradient(to bottom, #ffffff24, #ffffff66);
+    border-radius: 1.25rem;
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+    font-size: 0.72rem;
+    line-height: 1.5;
+    font-weight: 600;
+    white-space: nowrap;
+    transform: translateX(-50%);
+}
+
+/* تم إزالة الـ mask-image لتظهر اللوجوهات (كالماستر كارد) طبيعية تماماً */
+.pay-brand .card-brand-img {
+    position: relative;
+    z-index: 1;
+}
+
+.card-brand-img {
+    width: 2.8125rem;
+    height: auto;
+    object-fit: contain;
+}
+
+.mc-img {
+    width: 2.5rem;
+}
+
+.pp-img-icon {
+    width: 2rem;
+}
+
+/* ---------- Front: number + holder ---------- */
+.pay-main {
+    margin-bottom: 1rem;
+}
+
+.pay-number {
+    margin-bottom: 0.5rem;
+    font-family: var(--mono);
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-align: right;
+    direction: ltr;
+}
+
+.pp-mid {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+}
+
+.pay-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.pay-bottom small {
+    display: block;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    opacity: 0.8;
+}
+
+.pay-bottom strong {
+    display: block;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+}
+
+.pay-end {
+    text-align: right;
+}
+
+.pp-verified {
+    color: #4ade80;
+}
+
+/* ---------- Back face ---------- */
+.flip-card-back {
+    padding: 1.5rem 1rem;
+    background-color: var(--text);
+    transform: rotateY(180deg);
+}
+
+.mag-strip {
+    width: 100%;
+    height: 2.5rem;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 0.25rem;
+}
+
+.sig-note {
+    font-size: 0.65rem;
+    color: #94a3b8;
+    text-align: right;
+}
+
+.sig-box {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.3125rem 0.75rem 0.3125rem 1.25rem;
+    background-color: #e5e7eb;
+    border-radius: 0.5rem;
+    color: #1f2937;
+    font-family: var(--mono);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+    direction: ltr;
+}
+
+.sig-blur {
+    width: 13.75rem;
+    height: 1.25rem;
+    background-color: #9ca3af;
+    border-radius: 0.375rem;
+    filter: blur(5px);
+}
+
+.cvv-wrap {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    text-align: right;
+}
+
+.cvv-wrap small {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: #ffffff;
+}
+
+.cvv-box {
+    padding: 0.5rem 0.75rem;
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 1.125rem;
+    line-height: 1.375rem;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   19. RESPONSIVE: SMALL SCREENS (max-width)
+   ========================================================================== */
+
+/* ---------- Phones (up to 767px) ---------- */
+@media (max-width: 767px) {
+
+    /* Sidebar is hidden on phones */
+    .sidebar {
+        display: none;
+    }
+
+    /* Topbar becomes 3 rows: brand / actions / status */
+    .topbar {
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    /* Lift the brand children into the topbar flex flow */
+    .topbar-brand {
+        display: contents;
+    }
+
+    .topbar-brand .brand-icon,
+    .topbar-brand .brand-text {
+        order: 1;
+    }
+
+    .topbar-brand .brand-text {
+        flex: 1;
+    }
+
+    .topbar-actions {
+        order: 2;
+        width: 100%;
+    }
+
+    /* Pushes the avatar to the opposite side */
+    .topbar-actions .user {
+        margin-right: auto;
+    }
+
+    .status {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-right: 0;
+    }
+}
+
+
+/* ---------- Small phones (up to 480px) ---------- */
+@media (max-width: 480px) {
+    .card {
+        padding: 1.25rem;
+    }
+
+    .stat-card {
+        padding: 1.75rem 1.5rem;
+    }
+
+    .brand-text h1 {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+        line-height: 2.25rem;
+    }
+
+    /* Hide the user name, keep the avatar */
+    .user {
+        padding: 0.375rem;
+    }
+
+    .user-info {
+        display: none;
+    }
+
+    .bills-total h3 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+
+    .budget-summary-top h3 {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+
+    .flip-card-front {
+        padding: 1.25rem;
+    }
+
+    .pay-number {
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+    }
+
+    .pay-bottom strong {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* ---------- Very small phones (up to 360px) ---------- */
+@media (max-width: 360px) {
+    .main {
+        padding: 0.75rem;
+    }
+
+    .bills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pay-number {
+        font-size: 0.875rem;
+        letter-spacing: 0.03em;
+    }
+}
+
+
+/* ---------- Tablet and up (768px+) ---------- */
+@media (min-width: 768px) {
+    .main {
+        gap: 1.25rem;
+        padding: 1.5rem;
+    }
+
+    .topbar {
+        justify-content: space-between;
+    }
+
+    .stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.25rem;
+    }
+
+    .dashboard {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+            "transactions transactions"
+            "activities   bills"
+            "budget       chart"
+            "budget       summary"
+            "payments     payments";
+        gap: 1.25rem;
+    }
+
+    /* Payment cards sit side by side across the full width */
+    .cards-stack {
+        flex-direction: row;
+    }
+
+    .cards-stack .flip-card {
+        flex: 1;
+        min-width: 0;
+    }
+}
+
+
+/* ---------- Tablet only (768px to 991px): icon-only sidebar ---------- */
+@media (min-width: 768px) and (max-width: 991px) {
+    .app {
+        grid-template-columns: 5.5rem minmax(0, 1fr);
+        grid-template-areas: "sidebar main";
+    }
+
+    .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        padding: 1.5rem 0.75rem;
+        border-bottom: none;
+        border-left: 1px solid var(--border);
+        overflow-y: auto;
+    }
+
+    .brand {
+        justify-content: center;
+    }
+
+    /* Hide all text labels, keep icons only */
+    .brand .brand-text,
+    .nav-link span,
+    .quick-title,
+    .quick-link > span:not(.quick-icon) {
+        display: none;
+    }
+
+    .nav-link,
+    .quick-link {
+        justify-content: center;
+        min-height: auto;
+        padding: 0.75rem;
+    }
+
+    .quick {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+    }
+}
+
+
+/* ---------- Desktop (992px+): full sticky sidebar on the right (RTL) ---------- */
+@media (min-width: 992px) {
+    .app {
+        grid-template-columns: 16.25rem minmax(0, 1fr);
+        grid-template-areas: "sidebar main";
+    }
+
+    .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        padding: 1.5rem 1rem 2.5rem;
+        border-bottom: none;
+        border-left: 1px solid var(--border);
+        overflow-y: auto;
+    }
+
+    .nav-list {
+        flex-direction: column;
+    }
+
+    .quick {
+        margin-top: 1.875rem;
+    }
+
+    .quick-list {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+/* ---------- Wide desktop (1200px+): three-column dashboard ---------- */
+@media (min-width: 1200px) {
+    .dashboard {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-areas:
+            "activities transactions transactions"
+            "bills      transactions transactions"
+            "budget     chart        payments"
+            "budget     summary      payments";
+    }
+
+    /* Payment cards stack vertically again in the third column */
+    .cards-stack {
+        flex-direction: column;
+    }
+
+    .cards-stack .flip-card {
+        flex: none;
+    }
+}
